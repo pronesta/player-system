@@ -554,3 +554,38 @@ select {
     margin: 40px;
 }
 
+/* MOBILE STATS FIX */
+@media (max-width: 900px) {
+
+    .statsPanel {
+
+        flex-direction: column;
+
+        gap: 50px !important;
+    }
+
+    .statsLeft,
+    .statsRight,
+    .moneyBox {
+
+        width: 100%;
+
+        min-width: unset;
+
+        text-align: center;
+    }
+
+    .moneyBtns {
+
+        justify-content: center;
+
+        gap: 20px;
+
+        flex-wrap: wrap;
+    }
+
+    .statsRight p {
+
+        margin: 15px 0;
+    }
+}
