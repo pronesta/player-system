@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+<meta charset="UTF-8">
+<title>PLAYER SYSTEM</title>
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+
+
+
+<!-- PLAYER SETUP -->
+<div id="setupPopup">
+
+    <h2>CREATE PLAYER</h2>
+
+    <input
+        id="setupName"
+        placeholder="Name"
+    >
+
+    <input
+        id="setupAge"
+        type="number"
+        placeholder="Age"
+    >
+
+    <select id="setupGender">
+
+        <option value="Male">Male</option>
+
+        <option value="Female">Female</option>
+
+    </select>
+
+    <button onclick="savePlayerInfo()">
+        START
+    </button>
+
+</div>
+
+
+
+
+
+<div class="container">
+
+    <h1>PLAYER SYSTEM</h1> 
+
+    
+    <!-- PROFILE -->
+<div class="panel profile">
+
+    <h2>[ PLAYER PROFILE ]</h2>
+
+    <p>Name : <span id="fullName"></span></p>
+    <p>Age : <span id="age"></span></p>
+    <p>Gender : <span id="gender"></span></p>
+    <p>Title : Disciplined Beginner</p>
+
+    <p>
+        Rank :
+        <span id="rank">E</span>
+    </p>
+
+    <p>
+        Next Rank :
+        <span id="nextRank">0 power for D</span>
+    </p>
+
+    <p>
+        Power Level :
+        <span id="powerLevel">0</span>
+    </p>
+
+</div>
+
+
+    <!-- LEVEL -->
+    <div class="panel">
+
+        <h2 class="levelTitle">
+            LEVEL <span id="level">1</span>
+        </h2>
+
+        <div class="bar-container">
+            <div id="xpBar"></div>
+        </div>
+
+        <p id="xpText"></p>
+
+    </div>
+
+
+
+
+
+<div class="panel statsPanel">
+
+    <div class="statsLeft">
+
+        <h2>STATS</h2>
+
+        <p><span class="stat-name">STR</span> : <span id="force">0</span></p>
+        <p><span class="stat-name">END</span> : <span id="endurance">0</span></p>
+        <p><span class="stat-name">INT</span> : <span id="knowledge">0</span></p>
+        <p><span class="stat-name">DISC</span> : <span id="discipline">0</span></p>
+
+    </div>
+
+    <div class="statsRight">
+
+        <h2>DISCIPLINE</h2>
+
+        <p>Streak : <span id="streak">0</span></p>
+        <p>Daily % : <span id="dailyPercent">0%</span></p>
+        <p>Score : <span id="disciplineScore">0</span></p>
+
+    </div>
+
+    <div class="moneyBox">
+
+        <h2>MONEY</h2>
+
+        <p id="money">0 €</p>
+
+        <div class="moneyBtns">
+
+            <div class="neg">
+                <button onclick="changeMoney(-100)">-100</button>
+                <button onclick="changeMoney(-1000)">-1K</button>
+                <button onclick="changeMoney(-10000)">-10K</button>
+                <button onclick="changeMoney(-100000)">-100K</button>
+            </div>
+
+            <div class="pos">
+                <button onclick="changeMoney(100)">+100</button>
+                <button onclick="changeMoney(1000)">+1K</button>
+                <button onclick="changeMoney(10000)">+10K</button>
+                <button onclick="changeMoney(100000)">+100K</button>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+    <!-- DAILY -->
+    <div class="panel">
+
+        <h2>DAILY QUESTS</h2>
+
+        <div id="dailyQuests"></div>
+
+    </div>
+
+    <!-- MAIN -->
+    <div class="panel">
+
+        <h2>MAIN QUESTS</h2>
+
+        <div id="mainQuests"></div>
+
+    </div>
+
+    <!-- SIDE -->
+    <div class="panel">
+
+        <h2>SIDE QUESTS</h2>
+
+        <div id="sideQuests"></div>
+
+    </div>
+
+    <!-- CREATE QUEST -->
+    <div class="panel">
+
+        <h2>CREATE QUEST</h2> <br> 
+
+        <input id="questName" placeholder="Quest Name">
+
+        <select id="questType">
+            <option value="daily">Daily Quest</option>
+            <option value="main">Main Quest</option>
+            <option value="side">Side Quest</option>
+        </select>
+
+        <input id="questXP" type="number" placeholder="XP">
+
+        <select id="questStat">
+            <option value="force">Strength</option>
+            <option value="endurance">Endurance</option>
+            <option value="knowledge">Intelligence</option>
+            <option value="discipline">Discipline</option>
+        </select>
+
+        <input id="questStatValue" type="number" step="0.1" placeholder="Stat gain">
+
+        <button onclick="addQuest()">CREATE</button>
+
+    </div>
+
+</div>
+
+<!-- Orbitron FONT -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+
+
+
+
+
+
+<!-- LEVEL UP -->
+<div id="levelUp">LEVEL UP</div>
+
+<!-- SONS -->
+<audio id="questSound" src="quest.mp3"></audio>
+<audio id="levelSound" src="levelup.mp3"></audio>
+
+
+<div id="questPopup"></div>
+
+
+
+
+<button id="resetBtn" onclick="openResetPopup()">
+    RESET PLAYER
+</button>
+
+    
+
+
+<div id="resetPopup">
+
+    <h2>RESET PLAYER ?</h2>
+
+    <p>All progress will be lost.</p>
+
+    <div class="resetButtons">
+
+        <button onclick="confirmReset()">
+            YES
+        </button>
+
+        <button onclick="closeResetPopup()">
+            NO
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
